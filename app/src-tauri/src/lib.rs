@@ -35,11 +35,11 @@ pub fn run() {
         .setup(|app| {
             let app_handle = app.handle().clone();
 
-            // Register global shortcut: Ctrl+Shift+G (Win/Linux) / Cmd+Shift+G (macOS)
+            // Register global shortcut: Ctrl+Shift+E (Win/Linux) / Cmd+Shift+E (macOS)
             #[cfg(target_os = "macos")]
-            let shortcut = Shortcut::new(Some(Modifiers::SUPER | Modifiers::SHIFT), Code::KeyG);
+            let shortcut = Shortcut::new(Some(Modifiers::SUPER | Modifiers::SHIFT), Code::KeyE);
             #[cfg(not(target_os = "macos"))]
-            let shortcut = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyG);
+            let shortcut = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyE);
 
             app.global_shortcut().on_shortcut(shortcut, move |_app, _shortcut, event| {
                 if event.state == ShortcutState::Pressed {

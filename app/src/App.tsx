@@ -39,7 +39,7 @@ function Sidebar() {
           </label>
         </div>
         <div className="shortcut-hint">
-          Press <kbd>⌘⇧G</kbd> anywhere
+          Press <kbd>⌘⇧E</kbd> anywhere
         </div>
       </div>
     </nav>

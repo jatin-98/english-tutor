@@ -23,7 +23,7 @@ AI correction popup, and hosts the full analytics dashboard.
 
 | Plugin                            | Purpose                                              |
 |-----------------------------------|------------------------------------------------------|
-| `tauri-plugin-global-shortcut`    | Register `Cmd+Shift+G` / `Ctrl+Shift+G` system-wide |
+| `tauri-plugin-global-shortcut`    | Register `Cmd+Shift+E` / `Ctrl+Shift+E` system-wide |
 | `tauri-plugin-clipboard-manager`  | Read selected text from clipboard                    |
 | `tauri-plugin-shell`              | Spawn Docker Compose to start backend services       |
 | `tauri-plugin-store`              | Persist user settings locally                        |
@@ -87,7 +87,7 @@ app/
 ## How the Global Shortcut Works
 
 1. User selects text in **any app** (Slack, Word, browser, Notepad, etc.)
-2. User presses `Cmd+Shift+G` (macOS) or `Ctrl+Shift+G` (Windows)
+2. User presses `Cmd+Shift+E` (macOS) or `Ctrl+Shift+E` (Windows)
 3. `lib.rs` intercepts the shortcut via `tauri-plugin-global-shortcut`
 4. A `shortcut-triggered` event is emitted to the React frontend
 5. The frontend simulates `Cmd+C` / `Ctrl+C` to copy the selected text
@@ -101,8 +101,8 @@ app/
 
 | OS      | Shortcut          |
 |---------|-------------------|
-| macOS   | `Cmd + Shift + G` |
-| Windows | `Ctrl + Shift + G`|
+| macOS   | `Cmd + Shift + E` |
+| Windows | `Ctrl + Shift + E`|
 
 The shortcut can be changed in the **Settings** page.
 
