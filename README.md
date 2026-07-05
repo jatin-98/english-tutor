@@ -73,7 +73,7 @@ npm install
 npm run tauri dev
 ```
 
-The app will appear in your system tray. Press `Ctrl+Shift+G` (or `Cmd+Shift+G` on macOS) after selecting any text to start.
+The app will appear in your system tray. Press `Ctrl+Shift+E` (or `Cmd+Shift+E` on macOS) after selecting any text to start.
 
 ---
 
