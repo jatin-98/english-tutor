@@ -1,4 +1,5 @@
 use tauri::{
+    Emitter,
     Manager,
     menu::{MenuBuilder, MenuItemBuilder},
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},

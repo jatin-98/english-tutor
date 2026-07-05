@@ -3,24 +3,45 @@
 /* ── Reset & Base ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
+/* ── Dark Theme (default) ─────────────────────────────────── */
+:root,
+[data-theme="dark"] {
   --bg-base:      #0f0f13;
   --bg-surface:   #18181f;
   --bg-elevated:  #22222d;
   --accent:       #7c6af7;
   --accent-light: #a594ff;
+  --accent-bg:    rgba(124, 106, 247, 0.15);
   --text-primary: #f0f0f5;
   --text-muted:   #8888a0;
   --border:       #2a2a38;
-  --sidebar-w:    220px;
+  --shadow:       0 4px 24px rgba(0, 0, 0, 0.4);
+  --toggle-bg:    #22222d;
 }
 
+/* ── Light Theme ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:      #f4f4fb;
+  --bg-surface:   #ffffff;
+  --bg-elevated:  #ebebf8;
+  --accent:       #6c5ce7;
+  --accent-light: #5541d7;
+  --accent-bg:    rgba(108, 92, 231, 0.1);
+  --text-primary: #1a1a2e;
+  --text-muted:   #666680;
+  --border:       #ddddf0;
+  --shadow:       0 4px 24px rgba(0, 0, 0, 0.08);
+  --toggle-bg:    #ebebf8;
+}
+
+/* ── Global ───────────────────────────────────────────────── */
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg-base);
   color: var(--text-primary);
   height: 100vh;
   overflow: hidden;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* ── App Shell ────────────────────────────────────────────── */
@@ -31,13 +52,15 @@ body {
 
 /* ── Sidebar ──────────────────────────────────────────────── */
 .sidebar {
-  width: var(--sidebar-w);
+  width: 220px;
   background: var(--bg-surface);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   padding: 20px 0;
   flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+  box-shadow: var(--shadow);
 }
 
 .sidebar-logo {
@@ -83,13 +106,74 @@ body {
 }
 
 .nav-links a.active {
-  background: rgba(124, 106, 247, 0.15);
-  color: var(--accent-light);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 600;
 }
 
-.shortcut-hint {
+/* ── Theme Toggle ─────────────────────────────────────────── */
+.sidebar-footer {
   padding: 14px 20px;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--toggle-bg);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  transition: background 0.2s;
+}
+
+.toggle-switch input:checked + .toggle-track {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+
+.toggle-switch input:checked ~ .toggle-thumb {
+  transform: translateX(18px);
+}
+
+/* ── Shortcut Hint ────────────────────────────────────────── */
+.shortcut-hint {
   font-size: 12px;
   color: var(--text-muted);
 }
@@ -101,7 +185,7 @@ kbd {
   padding: 2px 5px;
   font-size: 11px;
   font-family: monospace;
-  color: var(--accent-light);
+  color: var(--accent);
 }
 
 /* ── Main Content ─────────────────────────────────────────── */
@@ -110,6 +194,7 @@ kbd {
   overflow-y: auto;
   padding: 32px;
   background: var(--bg-base);
+  transition: background 0.2s;
 }
 
 .page h1 {
